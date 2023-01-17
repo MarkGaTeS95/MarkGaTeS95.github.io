@@ -10,6 +10,7 @@
       <input type="text" id="answer">
       <button type="submit">Submit</button>
     </form>
+    <h2 id="alert"></h2>
   </div>
 
   <script>
@@ -31,6 +32,7 @@
     let currentLevel = 0;
     const questionEl = document.getElementById('question');
     let currentAnswer = levels[currentLevel].answer.toLowerCase();
+    const alertEl = document.getElementById('alert');
 
     questionEl.innerText = levels[currentLevel].question;
 
@@ -39,10 +41,10 @@
       event.preventDefault();
       const input = document.getElementById('answer').value.toLowerCase();
       if (input === currentAnswer) {
-        alert(levels[currentLevel].correct);
+        alertEl.innerText = levels[currentLevel].correct;
         nextLevel();
       } else {
-        alert(levels[currentLevel].incorrect);
+        alertEl.innerText = levels[currentLevel].incorrect;
       }
     });
 
@@ -51,8 +53,9 @@
       if(currentLevel < levels.length){
         questionEl.innerText = levels[currentLevel].question;
         currentAnswer = levels[currentLevel].answer.toLowerCase();
+        alertEl.innerText = "";
       } else{
-        alert("Congratulations, you have completed all the levels!")
+        alertEl.innerText = "Congratulations, you have completed all the levels!";
       }
     }
   </script>
